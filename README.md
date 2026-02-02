@@ -1,3 +1,8 @@
+Docker dep:
+docker compose up --build
+docker exec -it <mysql_container_name> mysql -uroot -prootpass appdb
+SELECT * FROM messages;
+
 Deployment:
 
 kubectl delete -f k8s/ --ignore-not-found
