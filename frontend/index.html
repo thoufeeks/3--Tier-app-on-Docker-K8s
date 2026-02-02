@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Simple 3-Tier Demo</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 30px; }
+    input { padding: 8px; width: 300px; }
+    button { padding: 8px 12px; }
+    ul { margin-top: 20px; }
+    li { margin: 6px 0; }
+    .meta { color: #666; font-size: 12px; margin-left: 8px; }
+  </style>
+</head>
+<body>
+  <h2>Simple 3-Tier App (Frontend → Backend → MySQL)</h2>
+
+  <input id="msg" placeholder="Type something..." />
+  <button onclick="save()">Save</button>
+
+  <h3>Saved Messages</h3>
+  <ul id="list"></ul>
+
+  <script>
+    async function load() {
+      const res = await fetch("/api/messages");
+      const data = await res.json();
+      const list = document.getElementById("list");
+      list.innerHTML = "";
+      data.forEach(r => {
+        const li = document.createElement("li");
+        li.textContent = r.content;
+        const span = document.createElement("span");
+        span.className = "meta";
+        span.textContent = `(#${r.id} @ ${r.created_at})`;
+        li.appendChild(span);
+        list.appendChild(li);
+      });
+    }
+
+    async function save() {
+      const input = document.getElementById("msg");
+      const content = input.value.trim();
+      if (!content) return;
+
+      await fetch("/api/messages", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ content })
+      });
+
+      input.value = "";
+      load();
+    }
+
+    load();
+  </script>
+</body>
+</html>
