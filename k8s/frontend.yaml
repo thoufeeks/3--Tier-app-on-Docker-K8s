@@ -26,7 +26,7 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: frontend:1.0
+          image: thoufeek/frontend:latest
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 80
