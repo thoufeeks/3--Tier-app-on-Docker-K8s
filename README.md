@@ -14,7 +14,7 @@ kubectl get svc frontend
 
 
 
-Logs: 
+Logs
 kubectl logs deploy/backend --tail=120
 
 Verification:-
