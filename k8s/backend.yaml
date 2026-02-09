@@ -25,7 +25,7 @@ spec:
     spec:
       containers:
         - name: backend
-          image: backend:1.0
+          image: thoufeek/backend:latest
           imagePullPolicy: IfNotPresent
           env:
             - name: DB_HOST
