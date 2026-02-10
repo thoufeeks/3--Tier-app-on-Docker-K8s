@@ -1,4 +1,4 @@
-Docker dep:.
+Docker dep:..
 docker compose up --build
 docker exec -it <mysql_container_name> mysql -uroot -prootpass appdb
 SELECT * FROM messages;
