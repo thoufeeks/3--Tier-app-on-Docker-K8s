@@ -12,7 +12,7 @@ kubectl rollout status deploy/backend
 kubectl rollout status deploy/frontend
 kubectl get svc frontend
 
-
+sdsd
 
 Logs
 kubectl logs deploy/backend --tail=120
